@@ -68,7 +68,8 @@ public class GraphTopologicalSort_Simple {
 class GraphSimple {
 	int V;
 	ArrayList<LinkedList<Integer>> adjListArray;
-	List<Integer> allVertexs;
+	//List<Integer> allVertexs;
+	Set<Integer> allVertexs;
 	List<EdgeSimple> allEdges;
 	
 	public GraphSimple(int V) {
@@ -76,7 +77,8 @@ class GraphSimple {
 		this.V = V;
 		
 		adjListArray = new ArrayList<LinkedList<Integer>>();
-		allVertexs = new ArrayList<Integer>();
+		//allVertexs = new ArrayList<Integer>();
+		allVertexs = new HashSet<Integer>();
 		allEdges = new ArrayList<EdgeSimple>();
 		
 		for(int i= 0; i< V; i++) {
