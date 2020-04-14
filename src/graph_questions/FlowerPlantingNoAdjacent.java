@@ -27,15 +27,14 @@ Your task is to choose a flower type for each garden such that, for any two gard
 Return any such a choice as an array answer, where answer[i] is the type of flower planted in the (i+1)-th garden.  The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 
 Example 1:
-
 Input: N = 3, paths = [[1,2],[2,3],[3,1]]
 Output: [1,2,3]
-Example 2:
 
+Example 2:
 Input: N = 4, paths = [[1,2],[3,4]]
 Output: [1,2,1,2]
-Example 3:
 
+Example 3:
 Input: N = 4, paths = [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]
 Output: [1,2,3,4]
  * @author t0158551

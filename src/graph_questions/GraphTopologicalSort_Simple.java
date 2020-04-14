@@ -11,12 +11,27 @@ import java.util.Set;
 
 public class GraphTopologicalSort_Simple {
 
+	public void DFSUtil(GraphSimple g, Integer v, Set<Integer> visited, Deque<Integer> stack) {
+		visited.add(v);
+		ArrayList<LinkedList<Integer>> adjList = g.getAdjList();
+	//	System.out.println("adjList: "+ adjList);
+		
+		for (Integer i : adjList.get(v)){
+		//	System.out.println("i : " + i);
+			if(visited.contains(i)) {
+				continue;
+			}
+			DFSUtil(g, i, visited, stack);
+		}
+		stack.offer(v);				
+	}
+	
 	public void topSortGraphsimple(GraphSimple g) {
 		Set<Integer> visited = new HashSet<Integer>();		
 		Deque<Integer> stack = new ArrayDeque<Integer>();
 		
 		for(Integer v : g.getAllVertexs()) {
-			System.out.println("vertex : " + v);
+			//System.out.println("vertex : " + v);
 			if(visited.contains(v)) {
 				continue;
 			}
@@ -28,29 +43,20 @@ public class GraphTopologicalSort_Simple {
 		for(Integer val : stack) {
 			System.out.println(val + " ");
 		}
-	}
-	
-	public void DFSUtil(GraphSimple g, Integer v, Set<Integer> visited, Deque<Integer> stack) {
-		visited.add(v);
-		ArrayList<LinkedList<Integer>> adjList = g.getAdjList();
-		System.out.println("adjList: "+ adjList);
-		for (Integer i : adjList.get(v)){
-			System.out.println("i : " + i);
-			if(visited.contains(i)) {
-				continue;
-			}
-			DFSUtil(g, i, visited, stack);
-		}
-		stack.offer(v);				
-	}
+	}	
 	
 	public static void main(String[] args) {
 		GraphSimple g = new GraphSimple(6);
 		
-		g.addEdge(1, 2, 11);
-		g.addEdge(2, 4, 14);
-		g.addEdge(2, 3, 13);
-		g.addEdge(1, 5, 15);
+//		g.addEdge(1, 2, 11);
+//		g.addEdge(2, 4, 14);
+//		g.addEdge(2, 3, 13);
+//		g.addEdge(1, 5, 15);
+//		
+
+		g.addEdge(1, 2, 12);
+		g.addEdge(2, 3, 12);
+		g.addEdge(1, 3, 12);
 		
 		//g.printGraph();
 		System.out.println("allvertexs: " + g.getAllVertexs());
