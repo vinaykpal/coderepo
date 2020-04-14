@@ -117,6 +117,7 @@ col_rep = 10000+col_id
 In all,
 union(stones[i][0], stones[i][1] ) joins the row and the column of the i-th stone.
  */
+	//test code
     public static int removeStones(final int[][] stones) {
     	System.out.println("stones.length: " + stones.length);
         for (int i = 0; i < stones.length; ++i){
