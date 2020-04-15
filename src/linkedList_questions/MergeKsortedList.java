@@ -36,7 +36,6 @@ class ListComparator implements Comparator<Node> {
 }
 public class MergeKsortedList {
 	
-	
 	public static Node mergeLists(final List<ListNode>aList) {
 		PriorityQueue<Node> pq = new PriorityQueue<Node>(new ListComparator());
 		
@@ -90,24 +89,24 @@ public class MergeKsortedList {
         aList.add(list2);
         aList.add(list3);
         
-          // Print the LinkedList
+        // Print the LinkedList
         System.out.println("List Before merg:");
         
-        for(int i=0; i< aList.size(); i++) {
+        for(int i=0; i< aList.size(); i++) {  // LinkedList: 1 2 3 LinkedList: 4 6 LinkedList: 5 5 5 5 
         	ListNode.printList(aList.get(i));
         	System.out.println("\n");
-        }
+        } 
         System.out.println("\nList After reverse:");
         
         ListNode res = new ListNode();
         res.head = mergeLists(aList);
-        ListNode.printList(res);
+        ListNode.printList(res); //List After reverse: LinkedList: 1 2 3 4 5 5 5 5 6 
                
         // merge using Binary tree
-        System.out.println("\nmerge using Binary tree:");
-        MergeKsortedList ob1 = new MergeKsortedList();
+   //     System.out.println("\nmerge using Binary tree:");
+   //     MergeKsortedList ob1 = new MergeKsortedList();
         
-        ob1.mergeKsortedListUsingBinaryTree(aList);
+     //   ob1.mergeKsortedListUsingBinaryTree(aList);
         
 	}
 	
@@ -119,13 +118,7 @@ public class MergeKsortedList {
 				pq.add(l.head);
 			}
 		}
-		
-		
-		
-		
 	}
-	
-	
 	
 	public void mergeKsortedListUsingBinaryTree( List<ListNode> aList) {
 		// test code:

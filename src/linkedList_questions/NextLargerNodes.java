@@ -12,10 +12,12 @@ import java.util.Stack;
  * 1019. Next Greater Node In Linked List
 Medium
 1148FavoriteShare
-We are given a linked list with head as the first node.  Let's number the nodes in the list: node_1, node_2, node_3, ... etc.
-Each node may have a next larger value: for node_i, next_larger(node_i) is the node_j.val such that j > i, node_j.val > node_i.val, and j is the smallest possible choice.  If such a j does not exist, the next larger value is 0.
+We are given a linked list with head as the first node.  Let's number the nodes in the list: node_1, node_2, 
+node_3,.. etc.Each node may have a next larger value: for node_i, next_larger(node_i) is the node_j.val such that j > i,
+node_j.val > node_i.val, and j is the smallest possible choice.  If such a j does not exist, the next larger value is 0.
 Return an array of integers answer, where answer[i] = next_larger(node_{i+1}).
-Note that in the example inputs (not outputs) below, arrays such as [2,1,5] represent the serialization of a linked list with a head node value of 2, second node value of 1, and third node value of 5.
+Note that in the example inputs (not outputs) below, arrays such as [2,1,5] represent the serialization of a linked list 
+with a head node value of 2, second node value of 1, and third node value of 5.
  
 Example 1:
 Input: [2,1,5]
@@ -23,7 +25,6 @@ Output: [5,5,0]
 Example 2:
 Input: [2,7,4,3,5]
 Output: [7,0,5,5,0]
- * @author t0158551
  *
  */
 public class NextLargerNodes {
@@ -115,7 +116,7 @@ public class NextLargerNodes {
 	    //return result;
 	    System.out.println("result: " );
         for(int i : result) {
-        	System.out.print(i +": ");
+        	System.out.print(i +": "); //2: 3: 4: 5: 0: 
         }
 	  }
 	
@@ -132,7 +133,7 @@ public class NextLargerNodes {
 	    }
 	    System.out.println("result: " );
         for(int i : result) {
-        	System.out.print(i +": ");
+        	System.out.print(i +": "); //2: 3: 4: 5: 0: 
         }
 	   // return result; 
 	}
@@ -163,7 +164,7 @@ public class NextLargerNodes {
         }
         System.out.println("result: " );
         for(int i : res) {
-        	System.out.print(i +": ");
+        	System.out.print(i +": ");  //2: 3: 4: 5: 0: 
         }
         //return res;
     }
@@ -185,13 +186,13 @@ public class NextLargerNodes {
     list = ListNode.insert(list, 5); 
      
       // Print the LinkedList
-    System.out.println("List Before reverse:");
+    System.out.println("List Before reverse:"); //LinkedList: 1 2 3 4 5 
     ListNode.printList(list); 
     System.out.println("\nList After reverse:");
     //nextLargestNodes(list.head);
     //nextLargerNodes_LC1(list.head);
     
     //nextLargerNodes_LC2(list.head);
-    nextLargerNodes_LC3(list.head);
+    nextLargerNodes_LC3(list.head); // result: 2: 3: 4: 5: 0: 
 	}
 }

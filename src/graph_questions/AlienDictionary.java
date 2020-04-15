@@ -2,6 +2,7 @@ package graph_questions;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -59,12 +60,23 @@ At last, if result string's length is less than the number of vertices, that mea
  */
 public class AlienDictionary {
 	
+	void printGraph(Map<Character, Set<Character>> graph) {
+		for (Character c: graph.keySet()) {
+			System.out.print(c);
+			for (Character cc : graph.get(c)) {
+				System.out.print(" -> " + cc);
+			}
+			System.out.println("\n");
+			//Iterator<Character> itr = graph.get(c).iterator();
+		}
+	}
 	 public String alienOrder(String[] words) {
 	        Map<Character, Set<Character>> graph = new HashMap<Character, Set<Character>>();
 	        int[] inDegree = new int[26];
 	        buildGraph(words, graph, inDegree);
 	        
 	        String order = topologicalSort(graph, inDegree);
+	        System.out.println("order: " + order);
 	        return order.length() == graph.size() ? order : "";
 	    }
 	    
@@ -74,7 +86,12 @@ public class AlienDictionary {
 	                graph.put(c, new HashSet<Character>());
 	            }
 	        }
-	        
+	        //System.out.println("graph before");
+//	        printGraph(graph);
+//	        for(int i =0; i < inDegree.length ; i++)
+//	        	System.out.print(inDegree[i] + " ");
+//	        
+//	        System.out.print("\n");
 	        for (int i = 1; i < words.length; i++) {
 	            String first = words[i - 1];
 	            String second = words[i];
@@ -83,15 +100,25 @@ public class AlienDictionary {
 	            for (int j = 0; j < length; j++) {
 	                char parent = first.charAt(j);
 	                char child = second.charAt(j);
+	                System.out.println(" parent: " + parent + " child: " + child);
 	                if (parent != child) {
+	                	//System.out.println(" parent: " + parent + " child: " + child);
 	                    if (!graph.get(parent).contains(child)) {
 	                        graph.get(parent).add(child);
 	                        inDegree[child - 'a']++;
+	                      //  System.out.println("inDegree[child: " + (child - 'a') + " : "+ inDegree[child - 'a']);
 	                    }
+	                    System.out.println("break: ");
 	                    break;
 	                }
 	            }
 	        }
+	        System.out.println("graph after");
+	        printGraph(graph);
+	        for(int i =0; i < inDegree.length ; i++)
+	        	System.out.print(inDegree[i] + " ");
+	        
+	        System.out.print("\n");
 	    }
 	    
 	    private String topologicalSort(Map<Character, Set<Character>> graph, int[] inDegree) {
@@ -101,6 +128,8 @@ public class AlienDictionary {
 	                queue.offer(c);
 	            }
 	        }
+	        
+	        System.out.println("Queue: " + queue.toString());
 	        
 	        StringBuilder sb = new StringBuilder();
 	        while (!queue.isEmpty()) {

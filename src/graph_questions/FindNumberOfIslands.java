@@ -68,7 +68,9 @@ public class FindNumberOfIslands {
 				if( j+1 < c && ( grid[i][j+1] == 1)) {
 					union(i*c+j , (i*c)+(j+1));
 				}
-				
+				if( j+1 < c && i +1 < r && ( grid[i+1][j+1] == 1)) {
+					union(i*c+j , ((i+1)*c)+(j+1));
+				}	
 			}
 		}
 		
@@ -100,16 +102,22 @@ public class FindNumberOfIslands {
 				{0,0,1,0,0},
 				{0,0,0,1,1}
 		};*/
+//		int[][] grid = {
+//				{1,1,1,1,0},
+//				{1,1,0,1,0},
+//				{1,1,0,0,0},
+//				{0,0,0,0,1}
+//		};
 		int[][] grid = {
-				{1,1,1,1,0},
-				{1,1,0,1,0},
-				{1,1,0,0,0},
-				{0,0,0,0,1}
-		};		
+				{1,1,0},
+				{1,0,1},
+				{0,0,1},				
+		};
+		//{{0,0},{0,1},{1,0},{1,2},{2,1},{2,2}};
 		
 		FindNumberOfIslands ob = new FindNumberOfIslands();
-		//int num = ob.numOfIsland(grid);
-		int num = ob.numOfIslab_P(grid);
+		int num = ob.numOfIsland(grid);
+		//int num = ob.numOfIslab_P(grid);
 		System.out.println("num: " + num);
 		//System.out.println("num using concat: ".concat(Integer.toString(num))); // concat is better as + will use stringbuilder
 	}
