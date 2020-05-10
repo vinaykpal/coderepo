@@ -12,42 +12,31 @@ you should create a new single cyclic list and return the reference to that sing
 public class InsertIntoSortedList {
 
 	public Node insert(int val, Node head) {
-		
-		if(head == null) {
-			head = new Node();
-			head.val = val;
+		if (head == null) {
+			head = new Node(val);
 			head.next = head;
-			
 			return head;
 		}
 		
 		Node cur = head;
-		Node next = head.next;
+		Node prev = null;
 		
-		while(cur != next) {
-			//Increasing order or same
-			if((cur.val == val) || (cur.val < val && next.val > val)) {
-				
-				Node newNode = new Node(val, next);			
-				cur.next = newNode;
-				
-				return head;
-			}
-			//Decreasing order
-			if(cur.val > next.val && (val > cur.val || val < next.val)) {
-				Node newNode = new Node(val, next);
-				cur.next = newNode;
-				
-				return head;
-			}
-			cur = next;
-			next = next.next;
-		}		
-		//insert before head
-		Node newNode = new Node(val, next);
-		head.next = newNode;
-		
-		return head;
+		do {
+   			prev = cur;
+   			cur = cur.next;
+   			if ( val >= prev.val && val <= cur.val) {  // prev.val < cur.val case
+   				break;
+   			}
+   			if ((prev.val > cur.val) && (val < cur.val || val > prev.val)) {
+   				break;
+   			}
+   		} while (cur != head);
+   			
+
+   	   		Node newNode = new Node(val);
+   	   		newNode.next = cur;
+   	   		prev.next = newNode;
+   	   		return newNode;
 	}
 	
 	public void printList(Node head) {
@@ -91,10 +80,15 @@ public class InsertIntoSortedList {
 		InsertIntoSortedList ob1 = new InsertIntoSortedList();
 		
 		head = ob1.insert(5, head);
+		System.out.println("head.val:" + head.val);
 		head = ob1.insert(7, head);
+		System.out.println("head.val:" + head.val);
 		head = ob1.insert(1, head);
+		System.out.println("head.val:" + head.val);
 		head = ob1.insert(9, head);
+		System.out.println("head.val:" + head.val);
 		head = ob1.insert(12, head);
+		System.out.println("head.val:" + head.val);
 		
 		ob1.printList(head); // 5 : 7 : 9 : 12 : 1
 			

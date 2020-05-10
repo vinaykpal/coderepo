@@ -43,20 +43,54 @@ public class GraphTopologicalSort_Simple {
 		for(Integer val : stack) {
 			System.out.println(val + " ");
 		}
-	}	
+	}
+	
+	
+	private int find(int[] parent, int xx) {
+		if (xx != parent[xx]) {
+			xx = find(parent, parent[xx]);
+		} 
+		return xx;
+	}
+	
+	private void union(int[] parent, int x, int y) {
+		parent[y] = x;
+	}
+	
+	public boolean detectCycle(GraphSimple g) {
+		int parent[] = new int[g.V];
+		for(int i =0; i < g.V; i++) {
+			parent[i] = i;
+		}
+		
+		for (EdgeSimple e : g.getAllEdge()) {
+			System.out.println(" e.v1 " + e.v1 + " e.v2 " + e.v2);
+			int  x = find(parent, e.v1);
+			int  y = find(parent, e.v2);
+			System.out.println(" x " + x +" y " + y);
+			if (x ==y ) {
+				return true;
+			}
+			
+			union(parent, x, y);
+						
+		}
+		return false;
+	}
 	
 	public static void main(String[] args) {
 		GraphSimple g = new GraphSimple(6);
 		
-//		g.addEdge(1, 2, 11);
-//		g.addEdge(2, 4, 14);
-//		g.addEdge(2, 3, 13);
-//		g.addEdge(1, 5, 15);
-//		
+		g.addEdge(1, 2, 11);
+		g.addEdge(2, 4, 14);
+		g.addEdge(2, 3, 13);
+		g.addEdge(1, 5, 15);
+		g.addEdge(3, 4, 15);
+		
 
-		g.addEdge(1, 2, 12);
-		g.addEdge(2, 3, 12);
-		g.addEdge(1, 3, 12);
+//		g.addEdge(1, 2, 12);
+//		g.addEdge(2, 3, 12);
+//		g.addEdge(1, 3, 12);
 		
 		//g.printGraph();
 		System.out.println("allvertexs: " + g.getAllVertexs());
@@ -68,6 +102,7 @@ public class GraphTopologicalSort_Simple {
 		
 		GraphTopologicalSort_Simple obj = new GraphTopologicalSort_Simple();
 		obj.topSortGraphsimple(g);
+		System.out.println("cycle: " + obj.detectCycle(g));
 	}
 }
 
@@ -76,7 +111,7 @@ class GraphSimple {
 	ArrayList<LinkedList<Integer>> adjListArray;
 	//List<Integer> allVertexs;
 	Set<Integer> allVertexs;
-	List<EdgeSimple> allEdges;
+	private List<EdgeSimple> allEdges;
 	
 	public GraphSimple(int V) {
 		// TODO Auto-generated constructor stub

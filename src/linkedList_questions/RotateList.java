@@ -33,46 +33,37 @@ public class RotateList {
 		System.out.println("len of list:" + len + " tail.val "+ tail.val);
 		
 		tail.next = head; //make it loop
-		System.out.println("#####1 tail.val: " + tail.val);
+		System.out.println("#####1 tail.val: " + tail.val); // 5
 		k = k%len;
 		if(k > 0) {
 			System.out.println("value of k: " + k);
 			
 			for(int i = 0; i< len-k; i++) {
 				tail = tail.next;
-				System.out.println("#####2 tail.val: " + tail.val);
+				System.out.println("#####2 tail.val: " + tail.val); // 1 2 3
 			}
 		}
 		newHead = tail.next;
-		
 		tail.next = null;
 
-		return newHead;
-		
+		return newHead;		
 	}
 	
 	public static void main(String[] args) {
 		/* Start with the empty list. */
     	ListNode list = new ListNode(); 
-  
-        // 
-        // ******INSERTION****** 
-        // 
-  
+ 
         // Insert the values 
         list = ListNode.insert(list, 1); 
         list = ListNode.insert(list, 2); 
         list = ListNode.insert(list, 3); 
         list = ListNode.insert(list, 4); 
-        list = ListNode.insert(list, 5); 
-         
+        list = ListNode.insert(list, 5);          
           // Print the LinkedList
         System.out.println("List Before rotate:");
-        ListNode.printList(list); 
+        ListNode.printList(list); //1 2 3 4 5
         System.out.println("List After rotate:");
         list.head = rotateList(list.head, 2);
-        ListNode.printList(list);
-		
-	}
-	
+        ListNode.printList(list);//4 5 1 2 3 
+	}	
 }

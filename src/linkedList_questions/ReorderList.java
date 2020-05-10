@@ -61,15 +61,15 @@ public class ReorderList {
 		
 		System.out.println("\n"); 
 		System.out.println("head1: "); //LinkedList: 1 2 3 4 
-
-		ListNode.printList(head1);
+		ListNode.printList(head1); 
 		System.out.println("\n");
 		System.out.println("head2: ");
-		ListNode.printList(head2); //  LinkedList: 8 7 6 5 
-		System.out.println("\n");
+		ListNode.printList(head2); //LinkedList: 8 7 6 5 
+		System.out.println("\n"); 
 		
 		System.out.println("inList: ");
-		ListNode.printList(inList); //LinkedList: 1 2 3 4
+		ListNode.printList(inList);//LinkedList: 1 2 3 4
+
 		
 		Node tempNode1, tempNode2;
 		while(head1 != null) {
@@ -95,6 +95,7 @@ public class ReorderList {
 //			head1 = head2;
 //			head2 = next1;
 //		}
+
 		
 		return inList;			
 	}
@@ -123,7 +124,58 @@ public class ReorderList {
         ListNode.printList(list); //LinkedList: 1 2 3 4 5 6 7 8
         ListNode res = reOrder(list);
         System.out.println("ReorderList After reorder:");
-        ListNode.printList(res); //LinkedList: 1 8 2 7 3 6 4 5 
-       
+        ListNode.printList(res);
+        
+        //********** practice
+        
+        ReorderList ob1 = new ReorderList();
+        Node res1 = ob1.reOrder_P(list.getHead());
+        ListNode.printList(res1); //1 8 2 7 3 6 4 5 
     } 
+    
+    public Node reOrder_P(Node head) {
+    	
+    	if (head ==null || head.next == null) {
+    		return null;
+    	}
+    
+    	Node h1 = head;
+    	Node h2 = head;
+    	// Split List to h1 and h2
+    	while (h2.next.next != null) { // find mid of list
+    		h1 = h1.next;//jump 1
+    		h2 = h2.next.next;  // jump 2 times  		
+    	}
+    	h2 = h1.next; // set h2 to start of 2nd half
+    	h1.next = null; // set end of 1st half to null
+    	h1 = head;	// set h1 to start of 1st half
+    	
+    	ListNode.printList(h1);
+    	System.out.println();
+    	ListNode.printList(h2);
+    	System.out.println();
+    	
+    	// reverse h2
+    	Node reverNode = null;
+    	while(h2 != null) {
+    		Node tempNode = h2.next;
+    		h2.next = reverNode;
+    		reverNode = h2;
+    		h2 = tempNode;    				
+    	}
+    	h2 = reverNode;
+    	ListNode.printList(h2);
+    	
+    	// merge h1 and h2
+    	while(h1 != null) {
+    		Node t1 = h1.next;
+        	Node t2 = h2.next;
+    		h1.next = h2;
+    		h2.next = t1;
+    		h2 = t2;
+    		h1 = t1;
+    	}
+    	return head;
+    }
+
 }

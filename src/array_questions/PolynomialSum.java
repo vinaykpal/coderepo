@@ -89,7 +89,7 @@ public class PolynomialSum {
         printPoly(A, m); 
         System.out.println("\nSecond polynomial is"); 
         printPoly(B, n); 
-        int sum[] = add(A, B, m, n); 
+        int sum[] = add(A, B, m, n);
         int size = max(m, n); 
         System.out.println("\nsum polynomial is"); 
         printPoly(sum, size); 
