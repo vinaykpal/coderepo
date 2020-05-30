@@ -3,7 +3,7 @@ package array_questions;
 public class SortArrayInEvenOdd {
 
 	//public void swap(int)
-	public static void sorArray(int[] arr) {
+	public static void sorArrayInOddEven(int[] arr) {
 		int len = arr.length;
 		for(int i =0; i < len; i++) {
 			if(arr[i] % 2 == 1) {
@@ -60,7 +60,7 @@ public class SortArrayInEvenOdd {
 		System.out.println("sort array: ");
 		int A[] = {1,3,4,6,5};
 		printArrary(A);
-		sorArray(A);
+		sorArrayInOddEven(A);
 		System.out.println("after sort: ");
 		printArrary(A);
 		

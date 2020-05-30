@@ -1,54 +1,49 @@
-package array_questions;
+package mix_practice;
 
 public class RingBuffer<T> {
-	int capacity = 0;
-	T[] buffer;
-	int indexOut = 0;
-	int indexIn = 0;
-	int count = 0;
 
+	int capacity;
+	T[] buf;
+	int count =0;
+	int indexIn =0;
+	int indexOut =0;
+	
 	public RingBuffer(int capacity) {
-		this.capacity = capacity;	
-		buffer = (T[]) new Object[capacity];
+		// TODO Auto-generated constructor stub
+		this.capacity = capacity;
+		this.buf = (T[]) new Object[capacity];
 	}
 	
-	public void push(T item) {
-		if (count == capacity) {
-			throw new RuntimeException("Ring buff overflow");
-		}
-		
-		buffer[indexIn] = item;
-		indexIn = (indexIn +1) % capacity;
+	public void push(T val) {
+		buf[indexIn % capacity] = val;
+		indexIn++;
 		count++;
 	}
 	
 	public T pop() {
 		if (isEmpty()) {
-			throw new RuntimeException("Buff underflow");
+			throw new RuntimeException("empty buffer");
 		}
-		T item = buffer[indexOut];
-		
-		indexOut = (indexOut +1) %capacity;
+		T val = buf[indexOut % capacity];
+		indexOut++;
 		count--;
-		
-		return item;
+		return val;
 	}
 	
-	public boolean isEmpty() {
+	boolean isEmpty() {
 		return count == 0;
 	}
 	
-	public int size() {
+	int size() {
 		return count;
 	}
 	
 	public void printBuff() {
 		System.out.println("out buff: ");
-		for(T i : buffer) {
+		for(T i : buf) {
 			System.out.print(i + " ");
 		}
 	}
-	
 	public static void main(String[] args) {
 		RingBuffer<Integer> obj = new RingBuffer<Integer>(5);
 		obj.push(1);
@@ -56,12 +51,13 @@ public class RingBuffer<T> {
 		obj.push(3);
 		obj.push(4);
 		obj.push(5);
-		//obj.push(6);
-		//obj.push(7);
+		obj.push(6);
+		obj.push(7);
 		//obj.push(8);
 		System.out.println("pop: " +obj.pop());
 		System.out.println("pop: " +obj.pop());
 		System.out.println("pop: " +obj.pop());
 		obj.printBuff();	
-	}	
+	}
 }
+
