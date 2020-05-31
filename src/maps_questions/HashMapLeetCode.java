@@ -1,3 +1,4 @@
+package maps_questions;
 import java.util.HashMap;
 
 public class HashMapLeetCode {
